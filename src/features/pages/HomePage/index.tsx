@@ -15,7 +15,7 @@ export default function HomePage() {
           <p className="text-lg text-black/70 p-2">Know your Consumer Rights...</p>
           <Link
             className="p-2 w-full max-w-sm text-center text-lg ring-2 hover:text-white ring-sky-600 text-sky-600 rounded shadow-md duration-200 ease-in-out hover:bg-sky-600/80"
-            to="/newSurvey/0"
+            to="/newSurvey"
           >
             Take a Survey
           </Link>

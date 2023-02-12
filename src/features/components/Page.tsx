@@ -14,7 +14,7 @@ const Page: React.FC<IPageProps> = ({ children }) => {
       }}
       className="w-screen">
       <Navbar />
-      <div className=" container mx-auto pt-24 px-2 pb-28 ">
+      <div className=" container mx-auto pt-12 px-2 pb-28 ">
         {children}
       </div>
     </div >

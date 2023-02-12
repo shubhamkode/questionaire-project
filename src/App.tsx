@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/newSurvey/:stepNo",
+    path: "/newSurvey",
     element: <SurveyPage />
   }
 ]);

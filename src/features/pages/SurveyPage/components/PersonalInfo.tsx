@@ -2,9 +2,9 @@
 import React from "react";
 import { useAppDispatch } from "../../../store";
 import { AiFillCaretDown } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
 
 import { updatePersonalInfo } from "../../../store/appState";
+import { nextStep } from "../../../store/formNavState";
 
 interface IPersonalFormState {
   name: string;
@@ -14,10 +14,10 @@ interface IPersonalFormState {
 }
 
 export default function PersonalInfo() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const initailState: IPersonalFormState = {
+  const dispatch = useAppDispatch();
+
+  const initialState: IPersonalFormState = {
     name: "",
     age: null,
     gender: "none",
@@ -26,12 +26,7 @@ export default function PersonalInfo() {
 
 
   const [personalFormState, setPersonalFormState] =
-    React.useState<IPersonalFormState>(() => {
-      // const response = localStorage.getItem("personalState");
-      // if (response) return JSON.parse(response)
-      // else return initailState;
-      return initailState;
-    });
+    React.useState<IPersonalFormState>(initialState);
 
 
   React.useEffect(() => {
@@ -67,9 +62,9 @@ export default function PersonalInfo() {
 
     //clear From State
     // setPersonalFormState(initailState);
+    //navigate to next step
 
-    //navigating to next step
-    navigate("/newSurvey/1")
+    dispatch(nextStep());
   };
 
   const handleFormChange = (e: any) => {
@@ -83,16 +78,20 @@ export default function PersonalInfo() {
     <div className="w-full p-2">
       <form
         onSubmit={handleFormSubmit}
-        className="space-y-3 p-2 max-w-2xl mx-auto"
+        className="space-y-5 p-2 max-w-2xl mx-auto"
       >
-        <h2 className="text-2xl p-2 leading-8">Personal Info:-</h2>
-        <div className="flex flex-col space-y-8 p-2  pb-8">
+        <div className="flex items-center justify-between px-4 py-2">
+          <h2 className="text-3xl p-2 leading-8">Personal Info:-</h2>
+          <p className="p-2 text-xl leading-8">Step: 1/2</p>
+        </div>
+
+        <div className="flex flex-col space-y-8 p-2">
           <input
             placeholder="Name"
             value={personalFormState.name}
             onChange={handleFormChange}
             name="name"
-            className="bg-slate-100 px-4 py-4 text-lg rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-slate-100 p-4 text-lg rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
           />
           <input
