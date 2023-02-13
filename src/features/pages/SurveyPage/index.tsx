@@ -14,7 +14,7 @@ export default function SurveyPage() {
 
   React.useEffect(() => {
     return () => {
-      // localStorage.clear()
+      localStorage.clear()
       dispatch(resetStep());
     }
   }, [])

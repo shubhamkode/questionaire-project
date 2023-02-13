@@ -33,27 +33,24 @@ export const appSlice = createSlice({
       state.lead.gender = action.payload.gender;
       state.lead.incomeGroup = action.payload.incomeGroup;
     },
-    createSurveyQuestions: (state, action: PayloadAction<number>) => {
-      for (let i = 0; i < action.payload; i++) {
-        state.lead.questions.push({
-          questionId: i,
-          chosenOption: -1
-        });
-      }
-    },
     updateSurveyQuestions: (state, action: PayloadAction<{
       questionId: number,
-      chosenOption: 0 | 1
-    }>) => {
-      state.lead.questions.map(question => {
-        if (question.questionId === action.payload.questionId) {
-          question.chosenOption = action.payload.chosenOption
-        }
-      })
+      chosenOption: number
+    }[]>) => {
+      state.lead.questions = action.payload
+    },
+    clearAppInfo: (state) => {
+      state.lead = {
+        userName: "",
+        age: 0,
+        gender: "",
+        incomeGroup: "",
+        questions: []
+      }
     }
   },
 })
 
-export const { updatePersonalInfo, createSurveyQuestions, updateSurveyQuestions } = appSlice.actions;
+export const { updatePersonalInfo, clearAppInfo, updateSurveyQuestions } = appSlice.actions;
 
 export default appSlice.reducer;
